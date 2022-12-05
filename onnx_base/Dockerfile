@@ -1,8 +1,9 @@
 FROM ubuntu:latest
 
 ENV DEBIAN_FRONTEND=noninteractive
+ENV PATH="${PATH}:/home/jenkins/.local/bin"
 
-RUN apt-get -qq update
+RUN apt-get -qq update > /dev/null
 RUN apt-get -qq install -y --no-install-recommends \
 	python3 \
 	git \
@@ -10,8 +11,9 @@ RUN apt-get -qq install -y --no-install-recommends \
 	python3-pip \
 	python3-dev \
 	build-essential \
-	sudo
-	
+	sudo \
+	> /dev/null
+
 RUN rm -rf /var/lib/apt/lists/*
 
 ENV HOME /home/jenkins
@@ -26,3 +28,8 @@ RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && \
     echo '%jenkins ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 USER jenkins
+
+RUN pip install \
+	pytest \
+	nbval \
+	pytest-html
