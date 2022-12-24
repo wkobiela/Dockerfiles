@@ -29,7 +29,7 @@ RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && \
 
 USER jenkins
 
-RUN pip install \
+RUN pip install --no-cache-dir \
 	pytest \
 	nbval \
 	pytest-html
