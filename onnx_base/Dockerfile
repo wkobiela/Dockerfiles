@@ -1,10 +1,9 @@
-FROM ubuntu:latest
+FROM ubuntu:22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PATH="${PATH}:/home/jenkins/.local/bin"
 
-RUN apt-get -qq update > /dev/null
-RUN apt-get -qq install -y --no-install-recommends \
+RUN apt-get -qq update > /dev/null && apt-get -qq install -y --no-install-recommends \
 	python3 \
 	git \
 	cmake \
@@ -12,9 +11,9 @@ RUN apt-get -qq install -y --no-install-recommends \
 	python3-dev \
 	build-essential \
 	sudo \
-	> /dev/null
-
-RUN rm -rf /var/lib/apt/lists/*
+	> /dev/null \
+	&& apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 ENV HOME /home/jenkins
 RUN adduser --disabled-password --gecos '' jenkins && \
