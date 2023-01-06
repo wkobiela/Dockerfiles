@@ -37,6 +37,7 @@ RUN apt-get -qq update > /dev/null && apt-get -qq install -y --no-install-recomm
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN curl -sS https://bootstrap.pypa.io/get-pip.py | python3.7 && \
     curl -sS https://bootstrap.pypa.io/get-pip.py | python3.8 && \
     curl -sS https://bootstrap.pypa.io/get-pip.py | python3.9 && \
