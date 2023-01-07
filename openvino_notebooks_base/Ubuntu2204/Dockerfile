@@ -5,12 +5,16 @@ ENV PATH="${PATH}:/home/jenkins/.local/bin"
 
 RUN apt-get -qq update > /dev/null && apt-get -qq install -y --no-install-recommends \
     git \
+    build-essential \
+    ninja-build \
     curl \
     unzip \
     libsndfile1 \
     libflac8 \
     libopus0 \
     libvorbisenc2 \
+    libgl1 \
+    libgomp1 \
     opus-tools \
     software-properties-common \
     gpg-agent \
@@ -24,15 +28,19 @@ RUN apt-get -qq update > /dev/null && apt-get -qq install -y --no-install-recomm
     python3.7 \
     python3.7-distutils \
     python3.7-venv \
+    python3.7-dev \
     python3.8 \
     python3.8-distutils \
     python3.8-venv \
+    python3.8-dev \
     python3.9 \
     python3.9-distutils \
     python3.9-venv \
+    python3.9-dev \
     python3.10 \
     python3.10-distutils \
     python3.10-venv \
+    python3.10-dev \
 	> /dev/null && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
