@@ -31,4 +31,5 @@ USER jenkins
 RUN pip install --no-cache-dir \
 	pytest \
 	nbval \
-	pytest-html
+	pytest-html \
+	parameterized
