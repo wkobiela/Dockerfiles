@@ -38,7 +38,7 @@ RUN curl -sS https://bootstrap.pypa.io/get-pip.py | python3.7 && \
     curl -sS https://bootstrap.pypa.io/get-pip.py | python3.11
 
 # Install beta Python3.12
-RUN sudo add-apt-repository ppa:deadsnakes/nightly > /dev/null
+RUN add-apt-repository ppa:deadsnakes/nightly > /dev/null
 
 RUN apt-get -qq update > /dev/null && apt-get -qq install -y --no-install-recommends \
     python3.12 \
