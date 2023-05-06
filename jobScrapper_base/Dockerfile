@@ -12,19 +12,15 @@ RUN apt-get -qq update > /dev/null && apt-get -qq install -y --no-install-recomm
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
+# Install stable Pythons
 RUN add-apt-repository ppa:deadsnakes/ppa > /dev/null
 
 RUN apt-get -qq update > /dev/null && apt-get -qq install -y --no-install-recommends \
     python3.7 \
-    python3.7-venv \
     python3.8 \
-    python3.8-venv \
     python3.9 \
-    python3.9-venv \
     python3.10 \
-    python3.10-venv \
     python3.11 \
-    python3.11-venv \
 	> /dev/null && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
@@ -35,5 +31,17 @@ RUN curl -sS https://bootstrap.pypa.io/get-pip.py | python3.7 && \
     curl -sS https://bootstrap.pypa.io/get-pip.py | python3.9 && \
     curl -sS https://bootstrap.pypa.io/get-pip.py | python3.10 && \
     curl -sS https://bootstrap.pypa.io/get-pip.py | python3.11
+
+# Install beta Python3.12
+RUN sudo add-apt-repository ppa:deadsnakes/nightly > /dev/null
+
+RUN apt-get -qq update > /dev/null && apt-get -qq install -y --no-install-recommends \
+    python3.12 \
+	> /dev/null && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+RUN curl -sS https://bootstrap.pypa.io/get-pip.py | python3.12
     
 WORKDIR /home/test
