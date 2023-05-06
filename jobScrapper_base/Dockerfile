@@ -17,10 +17,15 @@ RUN add-apt-repository ppa:deadsnakes/ppa > /dev/null
 
 RUN apt-get -qq update > /dev/null && apt-get -qq install -y --no-install-recommends \
     python3.7 \
+    python3.7-venv \
     python3.8 \
+    python3.8-venv \
     python3.9 \
+    python3.9-venv \
     python3.10 \
+    python3.10-venv \
     python3.11 \
+    python3.11-venv \
 	> /dev/null && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
@@ -37,6 +42,7 @@ RUN sudo add-apt-repository ppa:deadsnakes/nightly > /dev/null
 
 RUN apt-get -qq update > /dev/null && apt-get -qq install -y --no-install-recommends \
     python3.12 \
+    python3.12-venv \
 	> /dev/null && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
