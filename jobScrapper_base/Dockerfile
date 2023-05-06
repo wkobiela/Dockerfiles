@@ -42,10 +42,11 @@ RUN adduser --disabled-password --gecos '' jenkins && \
     groupmod -g 1002 jenkins && \
     adduser jenkins jenkins && \
     adduser jenkins sudo && \
-    mkdir -p "${HOME}/.ssh"
+    mkdir -p "${HOME}/.ssh" && \
+    mkdir -p /home/jenkins/test
     
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && \
     echo '%jenkins ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 USER jenkins
-WORKDIR /home/jenkins
+WORKDIR /home/jenkins/test
