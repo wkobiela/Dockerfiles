@@ -35,18 +35,5 @@ RUN curl -sS https://bootstrap.pypa.io/get-pip.py | python3.7 && \
     curl -sS https://bootstrap.pypa.io/get-pip.py | python3.9 && \
     curl -sS https://bootstrap.pypa.io/get-pip.py | python3.10 && \
     curl -sS https://bootstrap.pypa.io/get-pip.py | python3.11
-
-ENV HOME /home/jenkins
-RUN adduser --disabled-password --gecos '' jenkins && \
-    usermod -u 1002 jenkins && \
-    groupmod -g 1002 jenkins && \
-    adduser jenkins jenkins && \
-    adduser jenkins sudo && \
-    mkdir -p "${HOME}/.ssh" && \
-    mkdir -p /home/jenkins/test
     
-RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && \
-    echo '%jenkins ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
-
-USER jenkins
-WORKDIR /home/jenkins/test
+WORKDIR /home/test
