@@ -48,3 +48,4 @@ RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && \
     echo '%jenkins ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 USER jenkins
+WORKDIR /home/jenkins
