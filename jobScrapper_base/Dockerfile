@@ -8,6 +8,7 @@ RUN apt-get -qq update > /dev/null && apt-get -qq install -y --no-install-recomm
     curl \
     software-properties-common \
     gpg-agent \
+    gcc \
 	> /dev/null && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
