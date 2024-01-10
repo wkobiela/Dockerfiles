@@ -35,4 +35,11 @@ RUN curl -sS https://bootstrap.pypa.io/get-pip.py | python3.9 && \
     curl -sS https://bootstrap.pypa.io/get-pip.py | python3.11 && \
     curl -sS https://bootstrap.pypa.io/get-pip.py | python3.12
     
-WORKDIR /home/test
+RUN groupadd -g 1001 k8sworker && \
+    useradd -u 1001 -g 1001 k8sworker && \
+    mkdir /home/k8sworker && \
+    chown k8sworker:k8sworker /home/k8sworker
+
+WORKDIR /home/k8sworker
+
+USER k8sworker
