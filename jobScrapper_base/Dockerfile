@@ -17,8 +17,6 @@ RUN apt-get -qq update > /dev/null && apt-get -qq install -y --no-install-recomm
 RUN add-apt-repository ppa:deadsnakes/ppa > /dev/null
 
 RUN apt-get -qq update > /dev/null && apt-get -qq install -y --no-install-recommends \
-    python3.8 \
-    python3.8-venv \
     python3.9 \
     python3.9-venv \
     python3.10 \
@@ -32,8 +30,7 @@ RUN apt-get -qq update > /dev/null && apt-get -qq install -y --no-install-recomm
     rm -rf /var/lib/apt/lists/*
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
-RUN curl -sS https://bootstrap.pypa.io/get-pip.py | python3.8 && \
-    curl -sS https://bootstrap.pypa.io/get-pip.py | python3.9 && \
+RUN curl -sS https://bootstrap.pypa.io/get-pip.py | python3.9 && \
     curl -sS https://bootstrap.pypa.io/get-pip.py | python3.10 && \
     curl -sS https://bootstrap.pypa.io/get-pip.py | python3.11 && \
     curl -sS https://bootstrap.pypa.io/get-pip.py | python3.12
