@@ -40,6 +40,8 @@ RUN groupadd -g 1001 k8sworker && \
     mkdir /home/k8sworker && \
     chown k8sworker:k8sworker /home/k8sworker
 
+ENV PATH="${PATH}:/home/k8sworker/.local/bin"
+
 WORKDIR /home/k8sworker
 
 USER k8sworker
