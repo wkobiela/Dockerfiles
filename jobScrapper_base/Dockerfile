@@ -46,3 +46,5 @@ RUN curl -sS https://bootstrap.pypa.io/get-pip.py | python3.8 && \
     curl -sS https://bootstrap.pypa.io/get-pip.py | python3.12
     
 WORKDIR /home/test
+
+USER k8sworker
