@@ -4,11 +4,18 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV PATH="${PATH}:/home/jenkins/.local/bin"
 
 RUN apt-get -qq update > /dev/null && apt-get -qq install -y --no-install-recommends \
-    git \
     curl \
-    software-properties-common \
-    gpg-agent \
+    chromium-browser \
     gcc \
+    git \
+    gpg-agent \
+    libnss3 \
+    libxcb-randr0-dev \
+    libxcb-xtest0-dev \
+    libxcb-xinerama0-dev \
+    libxcb-shape0-dev \
+    libxcb-xkb-dev \
+    software-properties-common \
 	> /dev/null && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
