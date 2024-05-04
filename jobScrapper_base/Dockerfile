@@ -4,11 +4,30 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV PATH="${PATH}:/home/jenkins/.local/bin"
 
 RUN apt-get -qq update > /dev/null && apt-get -qq install -y --no-install-recommends \
-    git \
+    chromium-browser \
     curl \
-    software-properties-common \
-    gpg-agent \
     gcc \
+    git \
+    gpg-agent \
+    libasound2 \
+    libatk-bridge2.0-0 \
+    libatk1.0-0 \
+    libatk1.0-0 \
+    libcups2 \
+    libdrm-dev \
+    libgbm-dev \
+    libnss3 \
+    libpangocairo-1.0-0 \
+    libxcb-randr0-dev \
+    libxcb-shape0-dev \
+    libxcb-xinerama0-dev \
+    libxcb-xkb-dev \
+    libxcb-xtest0-dev \
+    libxcomposite-dev \
+    libxdamage1 \
+    libxkbcommon-x11-0 \
+    libxrandr2 \
+    software-properties-common \
 	> /dev/null && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
@@ -34,7 +53,7 @@ RUN curl -sS https://bootstrap.pypa.io/get-pip.py | python3.9 && \
     curl -sS https://bootstrap.pypa.io/get-pip.py | python3.10 && \
     curl -sS https://bootstrap.pypa.io/get-pip.py | python3.11 && \
     curl -sS https://bootstrap.pypa.io/get-pip.py | python3.12
-    
+
 RUN groupadd -g 1001 k8sworker && \
     useradd -u 1001 -g 1001 k8sworker && \
     mkdir /home/k8sworker && \
