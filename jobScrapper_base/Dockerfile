@@ -9,7 +9,7 @@ RUN apt-get -qq update > /dev/null && apt-get -qq install -y --no-install-recomm
     gcc \
     git \
     gpg-agent \
-    libasound2 \
+    libasound2-dev \
     libatk-bridge2.0-0 \
     libatk1.0-0 \
     libatk1.0-0 \
