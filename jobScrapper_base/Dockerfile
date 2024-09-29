@@ -54,8 +54,10 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN curl -sS https://bootstrap.pypa.io/get-pip.py | python3.9 && \
     curl -sS https://bootstrap.pypa.io/get-pip.py | python3.10 && \
     curl -sS https://bootstrap.pypa.io/get-pip.py | python3.11 && \
-    curl -sS https://bootstrap.pypa.io/get-pip.py | python3.12 && \
     curl -sS https://bootstrap.pypa.io/get-pip.py | python3.13
+
+# Python3.12 is default on Ubuntu24
+RUN ln -s /usr/bin/python3 /usr/local/bin/python3.12
     
 RUN groupadd -g 1001 k8sworker && \
     useradd -u 1001 -g 1001 k8sworker && \
