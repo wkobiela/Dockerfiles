@@ -50,6 +50,7 @@ RUN apt-get -qq update > /dev/null && apt-get -qq install -y --no-install-recomm
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
+# Enable installing pip other than from system packages for python3.12
 ENV PIP_BREAK_SYSTEM_PACKAGES=1
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
