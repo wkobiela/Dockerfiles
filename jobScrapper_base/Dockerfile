@@ -36,6 +36,8 @@ RUN apt-get -qq update > /dev/null && apt-get -qq install -y --no-install-recomm
 RUN add-apt-repository ppa:deadsnakes/ppa > /dev/null
 
 RUN apt-get -qq update > /dev/null && apt-get -qq install -y --no-install-recommends \
+    # For default python3.12
+    python3-pip \
     python3.9 \
     python3.9-venv \
     python3.10 \
@@ -57,7 +59,6 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN curl -sS https://bootstrap.pypa.io/get-pip.py | python3.9 && \
     curl -sS https://bootstrap.pypa.io/get-pip.py | python3.10 && \
     curl -sS https://bootstrap.pypa.io/get-pip.py | python3.11 && \
-    curl -sS https://bootstrap.pypa.io/get-pip.py | python3.12 && \
     curl -sS https://bootstrap.pypa.io/get-pip.py | python3.13
 
 RUN groupadd -g 1001 k8sworker && \
