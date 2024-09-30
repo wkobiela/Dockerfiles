@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM ubuntu:24.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PATH="${PATH}:/home/jenkins/.local/bin"
@@ -9,7 +9,7 @@ RUN apt-get -qq update > /dev/null && apt-get -qq install -y --no-install-recomm
     gcc \
     git \
     gpg-agent \
-    libasound2 \
+    libasound2-dev \
     libatk-bridge2.0-0 \
     libatk1.0-0 \
     libatk1.0-0 \
@@ -50,13 +50,16 @@ RUN apt-get -qq update > /dev/null && apt-get -qq install -y --no-install-recomm
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
+# Enable installing pip other than from system packages for python3.12
+ENV PIP_BREAK_SYSTEM_PACKAGES=1
+
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN curl -sS https://bootstrap.pypa.io/get-pip.py | python3.9 && \
     curl -sS https://bootstrap.pypa.io/get-pip.py | python3.10 && \
     curl -sS https://bootstrap.pypa.io/get-pip.py | python3.11 && \
     curl -sS https://bootstrap.pypa.io/get-pip.py | python3.12 && \
     curl -sS https://bootstrap.pypa.io/get-pip.py | python3.13
-    
+
 RUN groupadd -g 1001 k8sworker && \
     useradd -u 1001 -g 1001 k8sworker && \
     mkdir /home/k8sworker && \
