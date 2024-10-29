@@ -15,7 +15,8 @@ updates:
 
   # Docker dependencies
   - package-ecosystem: docker
-    directory: "/"
+    directories:
+      - "**/*"
     schedule:
       interval: "daily"
       time: "09:00"
