@@ -1,0 +1,42 @@
+name: Docker
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check for changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v45
+        with:
+          files: |
+            **/Dockerfile
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Dockerfiles
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: |
+          changed_files=$(echo "${{ steps.changed-files.outputs.modified_files }}" | tr ',' '\n' | grep 'Dockerfile')
+
+          for dockerfile_path in $changed_files; do
+            echo "Building Dockerfile located at $dockerfile_path"
+
+            image_tag="wkobiela/$(dirname $dockerfile_path | tr '/' '_'):latest"
+
+            docker build --file "$dockerfile_path" --tag "$image_tag" .
+          done
