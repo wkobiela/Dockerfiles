@@ -4,7 +4,7 @@
 # You can adjust the behavior by modifying this file.
 # For more information, see:
 # https://github.com/github/super-linter
-name: Lint Code Base
+name: Lint
 
 on:
   push:
@@ -15,7 +15,7 @@ on:
 permissions: {}
 
 jobs:
-  run-lint:
+  lint:
     runs-on: ubuntu-latest
 
     permissions:
@@ -37,4 +37,5 @@ jobs:
           VALIDATE_ALL_CODEBASE: true
           VALIDATE_DOCKERFILE_HADOLINT: true
           DEFAULT_BRANCH: "main"
+          MULTI_STATUS: false
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

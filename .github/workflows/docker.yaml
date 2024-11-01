@@ -26,7 +26,7 @@ jobs:
         if: steps.changed-files.outputs.any_changed == 'true'
         run: |
           echo "Changed Dockerfiles:"
-          echo "${{ steps.changed-files.outputs.modified_files }}" | tr ',' '\n' | grep 'Dockerfile' || echo "No Dockerfiles changed."
+          echo "${{ steps.changed-files.outputs.all_modified_files }}" | tr ',' '\n' | grep 'Dockerfile' || echo "No Dockerfiles changed."
 
       - name: Set up QEMU
         if: steps.changed-files.outputs.any_changed == 'true'
@@ -39,7 +39,7 @@ jobs:
       - name: Build Dockerfiles
         if: steps.changed-files.outputs.any_changed == 'true'
         run: |
-          changed_files=$(echo "${{ steps.changed-files.outputs.modified_files }}" | tr ',' '\n' | grep 'Dockerfile')
+          changed_files=$(echo "${{ steps.changed-files.outputs.all_modified_files }}" | tr ',' '\n' | grep 'Dockerfile')
 
           for dockerfile_path in $changed_files; do
             echo "Building Dockerfile located at $dockerfile_path"
