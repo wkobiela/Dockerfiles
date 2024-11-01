@@ -22,6 +22,12 @@ jobs:
           files: |
             **/Dockerfile
 
+      - name: Print list of changed Dockerfiles
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: |
+          echo "Changed Dockerfiles:"
+          echo "${{ steps.changed-files.outputs.modified_files }}" | tr ',' '\n' | grep 'Dockerfile' || echo "No Dockerfiles changed."
+
       - name: Set up QEMU
         if: steps.changed-files.outputs.any_changed == 'true'
         uses: docker/setup-qemu-action@v3
@@ -38,7 +44,7 @@ jobs:
           for dockerfile_path in $changed_files; do
             echo "Building Dockerfile located at $dockerfile_path"
 
-            image_tag="wkobiela/$(dirname $dockerfile_path | tr '/' '_'):latest"
+            image_tag="wkobiela/$(dirname $dockerfile_path | tr '[:upper:]' '[:lower:]'):latest"
 
             docker build --file "$dockerfile_path" --tag "$image_tag" .
           done
