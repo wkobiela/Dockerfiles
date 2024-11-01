@@ -20,6 +20,7 @@ RUN apt-get -qq update > /dev/null && apt-get -qq install -y --no-install-recomm
     python3-venv \
     python3-pip \
     git \
+    adduser \
 	> /dev/null && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
