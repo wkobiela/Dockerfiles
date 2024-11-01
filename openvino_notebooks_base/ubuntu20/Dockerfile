@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM ubuntu:20.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PATH="${PATH}:/home/jenkins/.local/bin"
@@ -25,10 +25,6 @@ RUN apt-get -qq update > /dev/null && apt-get -qq install -y --no-install-recomm
 RUN add-apt-repository ppa:deadsnakes/ppa > /dev/null
 
 RUN apt-get -qq update > /dev/null && apt-get -qq install -y --no-install-recommends \
-    python3.7 \
-    python3.7-distutils \
-    python3.7-venv \
-    python3.7-dev \
     python3.8 \
     python3.8-distutils \
     python3.8-venv \
@@ -46,8 +42,7 @@ RUN apt-get -qq update > /dev/null && apt-get -qq install -y --no-install-recomm
     rm -rf /var/lib/apt/lists/*
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
-RUN curl -sS https://bootstrap.pypa.io/get-pip.py | python3.7 && \
-    curl -sS https://bootstrap.pypa.io/get-pip.py | python3.8 && \
+RUN curl -sS https://bootstrap.pypa.io/get-pip.py | python3.8 && \
     curl -sS https://bootstrap.pypa.io/get-pip.py | python3.9 && \
     curl -sS https://bootstrap.pypa.io/get-pip.py | python3.10 
 
