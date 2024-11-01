@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM ubuntu:24.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PATH="${PATH}:/home/jenkins/.local/bin"
@@ -20,6 +20,7 @@ RUN apt-get -qq update > /dev/null && apt-get -qq install -y --no-install-recomm
     python3-venv \
     python3-pip \
     git \
+    adduser \
 	> /dev/null && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
