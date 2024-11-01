@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM ubuntu:24.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PATH="${PATH}:/home/jenkins/.local/bin"
@@ -9,8 +9,10 @@ RUN apt-get -qq update > /dev/null && apt-get -qq install -y --no-install-recomm
 	cmake \
 	python3-pip \
 	python3-dev \
+ 	python3-venv \
 	build-essential \
 	sudo \
+ 	adduser \
 	> /dev/null \
 	&& apt-get clean \
     && rm -rf /var/lib/apt/lists/*
@@ -28,7 +30,11 @@ RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && \
 
 USER jenkins
 
-RUN pip install --no-cache-dir \
+RUN python3 -m venv /home/jenkins/system_venv
+ENV PATH="/home/jenkins/system_venv/bin"
+
+RUN which pip && \
+    pip install --no-cache-dir \
 	pytest \
 	nbval \
 	pytest-html \
