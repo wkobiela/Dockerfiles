@@ -31,7 +31,7 @@ RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && \
 USER jenkins
 
 RUN python3 -m venv /home/jenkins/system_venv
-ENV PATH="$PATH:/home/jenkins/system_venv/bin"
+ENV PATH="/home/jenkins/system_venv/bin"
 
 RUN which pip && \
     pip install --no-cache-dir \
