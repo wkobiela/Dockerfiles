@@ -42,8 +42,7 @@ jobs:
           changed_files=$(echo "${{ steps.changed-files.outputs.all_modified_files }}" | tr ',' '\n' | grep 'Dockerfile')
 
           for dockerfile_path in $changed_files; do
-            echo ""
-            echo ""
+            echo -e "\n\n"
             echo "Building Dockerfile located at $dockerfile_path"
 
             image_tag="wkobiela/$(dirname $dockerfile_path | tr '[:upper:]' '[:lower:]'):latest"
