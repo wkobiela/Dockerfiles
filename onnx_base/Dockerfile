@@ -11,6 +11,7 @@ RUN apt-get -qq update > /dev/null && apt-get -qq install -y --no-install-recomm
 	python3-dev \
 	build-essential \
 	sudo \
+ 	adduser \
 	> /dev/null \
 	&& apt-get clean \
     && rm -rf /var/lib/apt/lists/*
