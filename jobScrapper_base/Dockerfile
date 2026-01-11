@@ -36,16 +36,14 @@ RUN apt-get -qq update > /dev/null && apt-get -qq install -y --no-install-recomm
 RUN add-apt-repository ppa:deadsnakes/ppa > /dev/null
 
 RUN apt-get -qq update > /dev/null && apt-get -qq install -y --no-install-recommends \
-    python3.9 \
-    python3.9-venv \
-    python3.10 \
-    python3.10-venv \
     python3.11 \
     python3.11-venv \
     python3.12 \
     python3.12-venv \
     python3.13 \
     python3.13-venv \
+	python3.14 \
+	python3.14-venv \
 	> /dev/null && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
@@ -54,11 +52,10 @@ RUN apt-get -qq update > /dev/null && apt-get -qq install -y --no-install-recomm
 ENV PIP_BREAK_SYSTEM_PACKAGES=1
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
-RUN curl -sS https://bootstrap.pypa.io/get-pip.py | python3.9 && \
-    curl -sS https://bootstrap.pypa.io/get-pip.py | python3.10 && \
-    curl -sS https://bootstrap.pypa.io/get-pip.py | python3.11 && \
+RUN curl -sS https://bootstrap.pypa.io/get-pip.py | python3.11 && \
     curl -sS https://bootstrap.pypa.io/get-pip.py | python3.12 && \
-    curl -sS https://bootstrap.pypa.io/get-pip.py | python3.13
+    curl -sS https://bootstrap.pypa.io/get-pip.py | python3.13 && \
+	curl -sS https://bootstrap.pypa.io/get-pip.py | python3.14
 
 RUN groupadd -g 1001 k8sworker && \
     useradd -u 1001 -g 1001 k8sworker && \
